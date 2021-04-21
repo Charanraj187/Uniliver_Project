@@ -35,3 +35,5 @@ if __name__ == '__main__':
 
     ol_txn_df.show(5, False)
     ol_txn_df.coalesce(1).write.mode("overwrite").parquet("s3a://projects-stagings/receipt")
+
+# spark-submit --packages "com.springml:spark-sftp_2.11:1.1.1" Uniliver_Project//com_project/ingestion/source_data_loading.py
