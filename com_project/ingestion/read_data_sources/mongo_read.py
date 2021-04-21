@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession
+from pyspark.sql import functions
 import yaml
 import os.path
 
@@ -32,7 +33,11 @@ if __name__ == '__main__':
         .option("collection", app_conf["mongodb_config"]["collection"])\
         .load()
 
-    address.show(5)
+    customer_df = customer.select(functions.col('consumer_id'), functions.col('address.street').alias('Street'),
+                                  functions.col('address.city').alias('city'),
+                                  functions.col('address.state').alias('State'))
+    customer_df = customer_df.withColumn("ins_dt", functions.current_date())
+    customer_df.show()
 
     #customer_df.write \
         #.mode('overwrite') \
