@@ -34,15 +34,15 @@ if __name__ == '__main__':
         .load()\
         .show()
 
-    #customer_df = customer.select(functions.col('consumer_id'), functions.col('address.street').alias('Street'),
-                                  #functions.col('address.city').alias('city'),
-                                  #functions.col('address.state').alias('State'))
+    customer_df = customer.select(functions.col('consumer_id'), functions.col('address.street').alias('Street'),
+                                  functions.col('address.city').alias('city'),
+                                  functions.col('address.state').alias('State'))
 
-    #customer_df = customer_df.withColumn("ins_dt", functions.current_date())
-    #customer_df.show()
+    customer_df = customer_df.withColumn("ins_dt", functions.current_date())
+    customer_df.show()
 
-    #customer_df.write \
-        #.mode('overwrite') \
-       # .parquet("s3a://" + src_conf["s3_conf"]["s3_bucket"] + "/staging/addr")
+    customer_df.write \
+        .mode('overwrite') \
+        .parquet("s3a://" + src_conf["s3_conf"]["s3_bucket"] + "/staging/addr")
 
 # spark-submit --packages "org.mongodb.spark:mongo-spark-connector_2.11:2.4.1" com_project/ingestion/read_data_sources/mongo_read.py
