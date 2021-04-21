@@ -16,6 +16,9 @@ mongodb_config:
   database: school
   collection: students
 
+  database: customer
+  collection: address
+
 redshift_conf:
   filetype: csv
   delimiter: |
