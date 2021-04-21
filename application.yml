@@ -1,5 +1,5 @@
 s3_conf:
-  s3_bucket: anu-buckets
+  s3_bucket: anu-buckets,
 
 sftp_conf:
     filetype: csv
