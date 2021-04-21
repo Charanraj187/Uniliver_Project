@@ -45,13 +45,11 @@ if __name__ == '__main__':
         .read.format("jdbc") \
         .option("driver", "com.mysql.cj.jdbc.Driver") \
         .options(**jdbc_params) \
-        .load() \
-        .withcolumn("ins_dt", functions.current_data())
+        .load()
 
     txn_df.show()
 
     txn_df.coalesce(1).write \
-        .partitionBy("ins_dt") \
         .mode("overwrite") \
         .parquet("s3a://" + app_conf["s3_conf"]["s3_bucket"] + "/staging/SB")
 
