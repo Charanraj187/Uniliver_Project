@@ -1,5 +1,4 @@
 from pyspark.sql import SparkSession
-from pyspark.sql import functions
 import yaml
 import os.path
 
@@ -26,13 +25,13 @@ if __name__ == '__main__':
         .getOrCreate()
     spark.sparkContext.setLogLevel('ERROR')
 
-    students = spark\
+    address = spark\
         .read\
         .format("com.mongodb.spark.sql.DefaultSource")\
         .option("database", app_conf["mongodb_config"]["database"])\
         .option("collection", app_conf["mongodb_config"]["collection"])\
         .load()
 
-    students.show()
+    address.show()
 
 # spark-submit --packages "org.mongodb.spark:mongo-spark-connector_2.11:2.4.1" Uniliver_Project/com_project/ingestion/read_data_sources/mongo_read.py
