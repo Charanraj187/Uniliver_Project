@@ -31,13 +31,13 @@ if __name__ == '__main__':
         .option("fileType", "csv") \
         .option("delimiter", "|") \
         .load(app_conf["sftp_conf"]["directory"] + "/receipts_delta_GBR_14_10_2017.csv") \
-        .withcolumn("ins_dt", functions.current_date())
+        #.withcolumn("ins_dt", functions.current_date())
 
     ol_txn_df.show(5, False)
 
     ol_txn_df.coalesce(1).write \
         .mode("overwrite") \
-        .partitionBy("ins_dt") \
+        #.partitionBy("ins_dt") \
         .parquet("s3a://" + app_conf["s3_conf"]["s3_bucket"] + "/staging/SB")
 
 # spark-submit --packages "com.springml:spark-sftp_2.11:1.1.1" com_project/ingestion/source_data_loading.py
