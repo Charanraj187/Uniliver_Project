@@ -44,4 +44,4 @@ if __name__ == '__main__':
         #.mode('overwrite') \
        # .parquet("s3a://" + src_conf["s3_conf"]["s3_bucket"] + "/staging/addr")
 
-# spark-submit --packages "com.springml:spark-sftp_2.11:1.1.1" com_project/ingestion/read_data_sources/mongo_read.py
+# spark-submit --packages "org.mongodb.spark:mongo-spark-connector_2.11:2.4.1" com_project/ingestion/read_data_sources/mongo_read.py
