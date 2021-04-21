@@ -51,6 +51,11 @@ if __name__ == '__main__':
     txn_df.show()
 
 
-    txn_df.coalesce(1).write.mode("overwrite").parquet("s3a://anu-buckets/txn")
+    txn_df.coalesce(1).write \
+        .partitionBy("id") \
+        .mode("overwrite") \
+        .option("header", "true") \
+        .option("delimeter", "~") \
+        .parquet("s3a://" + app_conf["s3_conf"]["s3_buckets"] + "/staging/SB")
 
-# spark-submit --packages "mysql:mysql-connector-java:8.0.15" dataframe/ingestion/others/systems/mysql_df.py
+# spark-submit --packages "mysql:mysql-connector-java:8.0.15" Uniliver_Project/com_project/ingestion/read_data_sources/mysql_read.py

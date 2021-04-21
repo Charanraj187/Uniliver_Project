@@ -1,5 +1,6 @@
 s3_conf:
-  s3_bucket: anu-buckets, projects-stagings
+  s3_bucket: anu-buckets
+  s3_buckets: projects-stagings
 
 sftp_conf:
     filetype: csv
