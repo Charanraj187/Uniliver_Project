@@ -31,6 +31,7 @@ if __name__ == '__main__':
         .option("fileType", "csv")\
         .option("delimiter", "|")\
         .load(app_conf["sftp_conf"]["directory"] + "/receipts_delta_GBR_14_10_2017.csv")
+        .withcolumn("ins_dt", current_date())
 
     ol_txn_df.show(5, False)
     ol_txn_df.coalesce(1).write.mode("overwrite").parquet("s3a://anu-buckets/receipt")
