@@ -38,6 +38,6 @@ if __name__ == '__main__':
     ol_txn_df.coalesce(1).write \
         .mode("overwrite") \
         #.partitionBy("ins_dt") \
-        .parquet("s3a://" + app_conf["s3_conf"]["s3_bucket"] + "/staging/SB")
+        .parquet("s3a://" + app_conf["s3_conf"]["s3_bucket"] + "/staging/OL")
 
 # spark-submit --packages "com.springml:spark-sftp_2.11:1.1.1" com_project/ingestion/source_data_loading.py
