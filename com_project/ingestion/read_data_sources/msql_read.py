@@ -41,15 +41,16 @@ if __name__ == '__main__':
 
     # use the ** operator/un-packer to treat a python dictionary as **kwargs
     print("\nReading data from MySQL DB using SparkSession.read.format(),")
-    txnDF = spark\
+    txn_df = spark\
         .read.format("jdbc")\
         .option("driver", "com.mysql.cj.jdbc.Driver")\
         .options(**jdbc_params)\
         .load()
+        .withcolumn("ins_dt", functions.current_data())
 
-    txnDF.show()
+    txn_df.show()
 
 
-    txnDF.coalesce(1).write.mode("overwrite").parquet("s3a://anu-buckets/txn")
+    txn_df.coalesce(1).write.mode("overwrite").parquet("s3a://anu-buckets/txn")
 
 # spark-submit --packages "mysql:mysql-connector-java:8.0.15" dataframe/ingestion/others/systems/mysql_df.py
