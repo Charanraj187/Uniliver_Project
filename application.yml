@@ -13,8 +13,8 @@ mysql_conf:
   query : "(select * from anudb.TRANSACTIONSYNC where Internal_Member_Id = 'PC7135361') as t"
 
 mongodb_config:
-  database: school
-  collection: students
+  #database: school
+  #collection: students
 
   database: customer
   collection: address
