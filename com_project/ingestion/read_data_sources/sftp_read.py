@@ -40,4 +40,4 @@ if __name__ == '__main__':
         #.partitionBy("ins_dt") \
         .parquet("s3a://" + app_conf["s3_conf"]["s3_bucket"] + "/staging/OL")
 
-# spark-submit --packages "com.springml:spark-sftp_2.11:1.1.1" com_project/ingestion/source_data_loading.py
+# spark-submit --packages "com.springml:spark-sftp_2.11:1.1.1" com_project/ingestion/read_data_sources/sftp_read.py
