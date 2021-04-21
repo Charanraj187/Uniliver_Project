@@ -57,4 +57,4 @@ if __name__ == '__main__':
         .option("delimeter", "~") \
         .parquet("s3a://" + app_conf["s3_conf"]["s3_bucket"] + "/staging/SB")
 
-# spark-submit --packages "mysql:mysql-connector-java:8.0.15" Uniliver_Project/com_project/ingestion/read_data_sources/mysql_read.py
+# spark-submit --packages "mysql:mysql-connector-java:8.0.15" com_project/ingestion/read_data_sources/mysql_read.py
