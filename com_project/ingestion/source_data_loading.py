@@ -42,4 +42,4 @@ if __name__ == '__main__':
         .option("delimeter", "~") \
         .parquet("s3a://" + app_conf["s3_conf"]["s3_buckets"] + "/staging/SB")
 
-# spark-submit --packages "com.springml:spark-sftp_2.11:1.1.1" Uniliver_Project//com_project/ingestion/source_data_loading.py
+# spark-submit --packages "com.springml:spark-sftp_2.11:1.1.1" Uniliver_Project/com_project/ingestion/source_data_loading.py
