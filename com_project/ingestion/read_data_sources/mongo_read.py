@@ -25,7 +25,7 @@ if __name__ == '__main__':
         .getOrCreate()
     spark.sparkContext.setLogLevel('ERROR')
 
-    address = spark\
+    customer = spark\
         .read\
         .format("com.mongodb.spark.sql.DefaultSource")\
         .option("database", app_conf["mongodb_config"]["database"])\
