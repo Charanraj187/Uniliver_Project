@@ -1,4 +1,5 @@
 from pyspark.sql import SparkSession
+from pyspark.sql import SparkSession
 import yaml
 import os.path
 
@@ -30,6 +31,7 @@ if __name__ == '__main__':
         .option("fileType", "csv")\
         .option("delimiter", "|")\
         .load(app_conf["sftp_conf"]["directory"] + "/receipts_delta_GBR_14_10_2017.csv")
+        .withcolumn("ins_dt", functions.current_date())
 
     ol_txn_df.show(5, False)
-    ol_txn_df.coalesce(1).write.mode("overwrite").parquet("s3a://charan-1234/receipt")
+    ol_txn_df.coalesce(1).write.mode("overwrite").parquet("s3a://projects-stagings/receipt")
