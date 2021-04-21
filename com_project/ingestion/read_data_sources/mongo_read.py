@@ -32,7 +32,7 @@ if __name__ == '__main__':
         .option("collection", app_conf["mongodb_config"]["collection"])\
         .load()
 
-    address.show()
+    address.show(5)
 
     #customer_df.write \
         #.mode('overwrite') \
