@@ -31,14 +31,15 @@ if __name__ == '__main__':
         .format("com.mongodb.spark.sql.DefaultSource")\
         .option("database", app_conf["mongodb_config"]["database"])\
         .option("collection", app_conf["mongodb_config"]["collection"])\
-        .load()
+        .load()\
+        .show()
 
-    customer_df = customer.select(functions.col('consumer_id'), functions.col('address.street').alias('Street'),
-                                  functions.col('address.city').alias('city'),
-                                  functions.col('address.state').alias('State'))
+    #customer_df = customer.select(functions.col('consumer_id'), functions.col('address.street').alias('Street'),
+                                  #functions.col('address.city').alias('city'),
+                                  #functions.col('address.state').alias('State'))
 
-    customer_df = customer_df.withColumn("ins_dt", functions.current_date())
-    customer_df.show()
+    #customer_df = customer_df.withColumn("ins_dt", functions.current_date())
+    #customer_df.show()
 
     #customer_df.write \
         #.mode('overwrite') \
