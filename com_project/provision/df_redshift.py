@@ -20,8 +20,8 @@ if __name__ == '__main__':
     spark.sparkContext.setLogLevel('ERROR')
 
     current_dir = os.path.abspath(os.path.dirname(__file__))
-    app_config_path = os.path.abspath(current_dir + "/../" + "application.yml")
-    app_secrets_path = os.path.abspath(current_dir + "/../" + ".secrets")
+    app_config_path = os.path.abspath(current_dir + "/../../" + "application.yml")
+    app_secrets_path = os.path.abspath(current_dir + "/../../" + ".secrets")
 
     conf = open(app_config_path)
     app_conf = yaml.load(conf, Loader=yaml.FullLoader)
@@ -49,7 +49,7 @@ if __name__ == '__main__':
     txn_df.coalesce(1).write\
         .format("io.github.spark_redshift_community.spark.redshift") \
         .option("url", jdbc_url) \
-        .option("tempdir", "s3a://" + app_conf["s3_conf"]["s3_bucket"] + "staging/CP") \
+        .option("tempdir", "s3a://" + app_conf["s3_conf"]["s3_bucket"] + "staging/RD") \
         .option("forward_spark_s3_credentials", "true") \
         .option("dbtable", "PUBLIC.TXN_FCT") \
         .mode("overwrite")\
